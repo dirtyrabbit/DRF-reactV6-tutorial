@@ -2,7 +2,7 @@
 Django-restful-react
 
 <h3>build django File</h3>
-<p>django-admin startproject pre_stock,pre_stock_api</p>
+<p>django-admin startproject django_pre_stock</p>
 <p>python manage.py startapp pre_stock,pre_stock_api</p>
 <p>settings.py -> INSTALLED_APPS: 'pre_stock','pre_stock_api'</p>
 
