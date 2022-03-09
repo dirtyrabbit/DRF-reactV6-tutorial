@@ -4,4 +4,6 @@ python manage.py startapp tutor
 cd C:\Users\user\DRF-reactv6
 C:\Users\user\Desktop\django_test\enve\Scripts\activate
 
+python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver

@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('', include('pre_stock.urls',namespace='pre_stock')),
+    path('api/',include('pre_stock_api.urls',namespace='pre_stock_api'))
 ]
