@@ -24,3 +24,18 @@ Tutorial: Django-restful-react
 <p>add pre_stock_api path to django_pre_stock urls.py</p>
 <p>create urls.py in pre_stock_api</p>
 
+<h3>REACT</h3>
+<p>npx create-react-app pre_stock_react</p>
+<p>npm start</p>
+
+<h3>CORS</h3>
+<p>django-cors-headers</p>
+INSTALLED_APPS = [
+    ...,
+    "corsheaders",
+    ...,
+]
+<p>MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware',]</p>
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
