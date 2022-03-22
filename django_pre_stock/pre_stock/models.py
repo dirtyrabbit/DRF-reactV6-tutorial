@@ -2,36 +2,46 @@ from django.db import models
 from django.utils import timezone
 # Create your models here.
 
-class Kind(models.Model):
-    name = models.CharField(max_length=100)
+# class Kind(models.Model):
+#     name = models.CharField(max_length=100)
+#     def __str__(self):
+#         return self.name
 
+class FinMind(models.Model):
+    dataset = models.CharField(max_length=100)
     def __str__(self):
         return self.name
+        
+class stock_id(models.Model):
+    stock_id = models.CharField(max_length=10)
+    def __str__(self):
+        return self.name
+    
 
 class Parameter(models.Model):
-    class PostObjects(models.Manager):
-        def get_queryset(self):
-            return super().get_queryset().filter(status='published')
-    option = (
-        ('draft', 'Draft'),
-        ('published', 'Published'),
-    )
-
+    # class PostObjects(models.Manager):
+    #     def get_queryset(self):
+    #         return super().get_queryset().filter(status='published')
+            
     title = models.CharField(max_length=100)
-    kind = models.ForeignKey(Kind, on_delete=models.PROTECT,default=1)
-    excerpt = models.TextField(null = True)
-    slug = models.SlugField(max_length=250,unique_for_date='published')
-    published = models.DateTimeField(default=timezone.now)
-    status = models.CharField(max_length=10,choices=option,default='published')
-    value = models.JSONField()
+    method = models.ForeignKey(FinMind, on_delete=models.PROTECT,default=1)
+    stock_id = models.ForeignKey(stock_id,on_delete=models.PROTECT,default=1)
+    # excerpt = models.TextField(null = True)
+    # slug = models.SlugField(max_length=250,unique_for_date='published')
+    start_data = models.DateTimeField(default=timezone.now)
+    end_data = models.DateTimeField()
+    #value = models.JSONField()
+
     objects = models.Manager() #default manager
-    postobjects = PostObjects() #custom manager
+    # postobjects = PostObjects() #custom manager
 
     class Meta:
-        ordering = ('-published',)
+        ordering = ('-stock_id',)
     
     def __str__(self):
         return self.title
+
+
 '''
 CASCADE: When the referenced object is deleted, also delete the objects that have references to it (when you remove a blog post for instance, you might want to delete comments as well). SQL equivalent: CASCADE.
 PROTECT: Forbid the deletion of the referenced object. To delete it you will have to delete all objects that reference it manually. SQL equivalent: RESTRICT.

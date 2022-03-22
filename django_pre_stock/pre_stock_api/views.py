@@ -6,7 +6,7 @@ from .serializers import ParameterSerializer
 # Create your views here.
 
 class PostList(generics.ListCreateAPIView):
-    queryset = Parameter.postobjects.all()
+    queryset = Parameter.objects.all()
     serializer_class = ParameterSerializer
     
 
@@ -14,6 +14,7 @@ class PostDetail (generics.RetrieveAPIView):
     queryset = Parameter.objects.all()
     serializer_class = ParameterSerializer
 
+    
 """ Concrete View Classes
 #CreateAPIView
 Used for create-only endpoints.
